@@ -1,3 +1,139 @@
+/* Mobile Hamburger Menu Overlay */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1100;
+    }
+    .mobile-menu-btn span {
+        display: block;
+        width: 28px;
+        height: 4px;
+        margin: 4px 0;
+        background: #fff;
+        border-radius: 2px;
+        transition: all 0.3s;
+    }
+    .mobile-nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(11,28,61,0.98);
+        z-index: 1200;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        animation: fadeIn 0.3s;
+    }
+    .mobile-nav-overlay.open {
+        display: flex !important;
+        animation: slideInRight 0.3s;
+    }
+    .mobile-nav-list {
+        margin-top: 80px;
+        width: 90vw;
+        max-width: 400px;
+        background: rgba(15,42,95,0.95);
+        border-radius: 1rem;
+        box-shadow: 0 8px 32px rgba(11,28,61,0.18);
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        animation: fadeIn 0.3s;
+    }
+    .mobile-nav-list li {
+        list-style: none;
+    }
+    .mobile-nav-list a {
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        transition: background 0.2s;
+        text-align: center;
+    }
+    .mobile-nav-list a:hover {
+        background: rgba(63,169,255,0.12);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Quick Action Button Fix for Mobile */
+@media (max-width: 768px) {
+    .quick-large-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        align-items: center;
+    }
+    .quick-action {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+}
+
+/* Dashboard Card Stacking for Mobile */
+@media (max-width: 768px) {
+    .stat-actions-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .stat-card {
+        min-width: 0 !important;
+        width: 100%;
+        margin: 0 auto 1rem auto;
+        box-sizing: border-box;
+        padding: 1rem;
+        border-radius: 1rem;
+        background: rgba(15,42,95,0.12);
+        text-align: left;
+    }
+}
+
+/* Element Alignment and Spacing Fixes */
+@media (max-width: 768px) {
+    .dashboard-header {
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+    .dashboard-header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    .dashboard-section {
+        padding: 1rem;
+    }
+    .recent-activity,
+    .quick-actions,
+    .getting-started {
+        padding: 1.5rem 1rem;
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+        background: rgba(15,42,95,0.08);
+    }
+    .checklist-item {
+        margin-bottom: 0.75rem;
+    }
+}
 /* Responsive Dashboard Layout */
 @media (max-width: 1024px) {
     .dashboard-wrapper {

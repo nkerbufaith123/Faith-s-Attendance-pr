@@ -15,7 +15,7 @@
             <a href="dashboard.html" class="navbar-logo">
                 <span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span>
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" style="display:none;">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -25,49 +25,25 @@
                     <div class="user-profile-section">
                         <img src="https://ui-avatars.com/api/?name=User&background=3FA9FF&color=fff" alt="Profile" class="profile-picture" id="profilePicture">
                         <div class="user-info">
-                            <span class="user-greeting" id="userGreeting">Welcome, <strong id="userFirstName">User</strong></span>
                             <span class="user-email" id="userEmail">user@example.com</span>
                         </div>
                     </div>
-                    <button class="btn-logout" id="logoutBtn">Logout</button>
                 </div>
             </div>
         </div>
-        <div class="mobile-menu" id="mobileMenu" style="display:none;">
-            <a href="dashboard.html" class="sidebar-item active">Dashboard</a>
-            <a href="attendance.html" class="sidebar-item">Attendance</a>
-            <a href="reports.html" class="sidebar-item">Reports</a>
-            <a href="task.html" class="sidebar-item">Task</a>
-            <a href="settings.html" class="sidebar-item">Account Settings</a>
+        <!-- Hamburger menu overlay for mobile -->
+        <div class="mobile-nav-overlay" id="mobileMenu" style="display:none;">
+            <ul class="mobile-nav-list">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="task.html">Tasks</a></li>
+                <li><a href="admin-users.html">Users</a></li>
+                <li><a href="settings.html">Account Settings</a></li>
+            </ul>
         </div>
     </nav>
-
-    <div class="dashboard-wrapper">
-        <!-- Sidebar (SHARED) -->
-        <aside class="sidebar">
-            <nav class="sidebar-nav">
-                <a href="dashboard.html" class="sidebar-item active">
-                    <i class="bi bi-speedometer2 sidebar-icon" aria-hidden="true"></i>
-                    <span class="sidebar-label">Dashboard</span>
-                </a>
-                <a href="attendance.html" class="sidebar-item">
-                    <i class="bi bi-clock sidebar-icon" aria-hidden="true"></i>
-                    <span class="sidebar-label">Attendance</span>
-                </a>
-                <a href="reports.html" class="sidebar-item">
-                    <i class="bi bi-bar-chart-line-fill sidebar-icon" aria-hidden="true"></i>
-                    <span class="sidebar-label">Reports</span>
-                </a>
-                <a href="task.html" class="sidebar-item">
-                    <i class="bi bi-list-task sidebar-icon" aria-hidden="true"></i>
-                    <span class="sidebar-label">Task</span>
-                </a>
-                <a href="settings.html" class="sidebar-item">
-                    <i class="bi bi-gear-fill sidebar-icon" aria-hidden="true"></i>
-                    <span class="sidebar-label">Account Settings</span>
-                </a>
-            </nav>
-        </aside>
+    <!-- End Top Navigation -->
 
     <!-- Dashboard Content -->
     <section class="dashboard-section">
