@@ -9,7 +9,7 @@
     --text-secondary: #A7B3C5;
     --success: #22C55E;
     --border-color: rgba(63, 169, 255, 0.1);
-}
+/* Removed stray closing brace */
 
 /* Themed toast notifications */
 .toast-container {
@@ -169,7 +169,7 @@ body {
         color: #fff;
         font-weight: 600;
     }
-    gap: 1rem;
+    /* gap: 1rem; removed, as it was outside a selector block. */
 }
 
 .btn-login {
@@ -430,7 +430,7 @@ body {
     inset: -2rem;
     background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
     border-radius: 50%;
-    blur: 3rem;
+    /* blur: 3rem; removed, not a valid CSS property */
     opacity: 0.3;
     animation: pulse 3s ease-in-out infinite;
 }
@@ -786,7 +786,7 @@ body {
 .pricing-features {
     list-style: none;
     margin-bottom: 2rem;
-    space-y: 1rem;
+    /* space-y: 1rem; removed, not a valid CSS property */
 }
 
 .pricing-features li {
@@ -895,7 +895,7 @@ body {
 .faq-list {
     max-width: 800px;
     margin: 0 auto;
-    space-y: 1rem;
+    /* space-y: 1rem; removed, not a valid CSS property */
 }
 
 .faq-item {
@@ -1120,9 +1120,7 @@ body {
     color: var(--primary);
 }
 
-.footer-contact {
-    space-y: 1.5rem;
-}
+/* .footer-contact ruleset removed as it was empty */
 
 .contact-item {
     display: flex;
