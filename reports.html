@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports - AttendancePro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <nav class="navbar dashboard-navbar">
+            <div class="navbar-content">
+                <a href="dashboard.html" class="navbar-logo"><span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span></a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" style="display:none;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="navbar-right">
+                    <div class="navbar-user">
+                        <div class="user-profile-section">
+                            <img src="https://ui-avatars.com/api/?name=User&background=3FA9FF&color=fff" alt="Profile" class="profile-picture" id="profilePicture">
+                            <div class="user-info">
+                                <span class="user-greeting" id="userGreeting">Welcome, <strong id="userFirstName">User</strong></span>
+                                <span class="user-email" id="userEmail">user@example.com</span>
+                            </div>
+                        </div>
+                        <button class="btn-logout" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu" id="mobileMenu" style="display:none;">
+                <a href="dashboard.html" class="sidebar-item">Dashboard</a>
+                <a href="attendance.html" class="sidebar-item">Attendance</a>
+                <a href="reports.html" class="sidebar-item active">Reports</a>
+                <a href="task.html" class="sidebar-item">Task</a>
+                <a href="settings.html" class="sidebar-item">Account Settings</a>
+            </div>
+    </nav>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-item">
+                    <i class="bi bi-speedometer2 sidebar-icon"></i>
+                    <span class="sidebar-label">Dashboard</span>
+                </a>
+                <a href="attendance.html" class="sidebar-item">
+                    <i class="bi bi-clock sidebar-icon"></i>
+                    <span class="sidebar-label">Attendance</span>
+                </a>
+                <a href="reports.html" class="sidebar-item active">
+                    <i class="bi bi-bar-chart-line-fill sidebar-icon"></i>
+                    <span class="sidebar-label">Reports</span>
+                </a>
+                <a href="task.html" class="sidebar-item">
+                    <i class="bi bi-list-task sidebar-icon"></i>
+                    <span class="sidebar-label">Task</span>
+                </a>
+                <a href="settings.html" class="sidebar-item">
+                    <i class="bi bi-gear-fill sidebar-icon"></i>
+                    <span class="sidebar-label">Account Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <section class="dashboard-section">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <h1>Reports & Analytics</h1>
+                    <p>View your attendance summary and generate reports</p>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Summary</h2>
+                    <div class="stat-actions-grid">
+                        <div class="stat-action primary">
+                            <div class="stat-action-icon"><i class="bi bi-hourglass-split"></i></div>
+                            <div class="stat-action-label">Total Working Hours</div>
+                            <div class="stat-action-value" id="totalHours">0h 0m</div>
+                        </div>
+                        <div class="stat-action info">
+                            <div class="stat-action-icon"><i class="bi bi-percent"></i></div>
+                            <div class="stat-action-label">Attendance Rate</div>
+                            <div class="stat-action-value" id="attendanceRate">0%</div>
+                        </div>
+                        <div class="stat-action accent">
+                            <div class="stat-action-icon"><i class="bi bi-star-fill"></i></div>
+                            <div class="stat-action-label">Total Points</div>
+                            <div class="stat-action-value" id="totalPoints">0</div>
+                        </div>
+                        <div class="stat-action muted">
+                            <div class="stat-action-icon"><i class="bi bi-graph-up"></i></div>
+                            <div class="stat-action-label">Productivity Score</div>
+                            <div class="stat-action-value" id="productivityScore">0%</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:2rem;">
+                        <h3 style="margin-bottom:1rem;">Generate Report</h3>
+                        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.5rem;">
+                            <form id="reportForm" style="display:flex; flex-direction:column; gap:1rem;">
+                                <div>
+                                    <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; opacity:0.7;">Report Type</label>
+                                    <select id="reportType" style="width:100%; padding:0.75rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-size:0.95rem;">
+                                        <option value="monthly">Monthly Attendance Report</option>
+                                        <option value="quarterly">Quarterly Report</option>
+                                        <option value="custom">Custom Date Range</option>
+                                    </select>
+                                </div>
+                                <div id="dateRangeFields" style="display:none;">
+                                    <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; opacity:0.7;">From Date</label>
+                                    <input type="date" id="reportFromDate" style="width:100%; padding:0.75rem; margin-bottom:1rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-size:0.95rem;">
+                                    <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; opacity:0.7;">To Date</label>
+                                    <input type="date" id="reportToDate" style="width:100%; padding:0.75rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-size:0.95rem;">
+                                </div>
+                                <textarea id="reportNotes" placeholder="Add any additional notes..." style="width:100%; padding:0.75rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-size:0.95rem; resize:vertical; min-height:80px;"></textarea>
+                                <button type="submit" class="btn-primary" style="align-self:flex-start;">Submit Report</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal" id="profileModal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Update Profile Picture</h2>
+                <button class="modal-close" id="modalClose" type="button">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <img src="https://ui-avatars.com/api/?name=User&background=3FA9FF&color=fff" id="previewImage" class="profile-preview">
+                <input type="file" id="profileInput" accept="image/*" style="display:none;">
+                <button type="button" class="btn-primary" id="uploadBtn" style="margin-top:1rem;">Choose Image</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" id="modalCancel">Cancel</button>
+                <button type="button" class="btn-primary" id="saveProfileBtn">Save Picture</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            updateReportsSummary();
+        });
+
+        function updateReportsSummary() {
+            const reports = getReportsData() || {};
+            const att = getAttendanceData() || {};
+            
+            let totalHours = 0, days = Object.values(att || {}).length, points = 0;
+            Object.values(att || {}).forEach(r => {
+                if (r.checkIn && r.checkOut) {
+                    const [h1, m1] = (r.checkIn || '').split(':');
+                    const [h2, m2] = (r.checkOut || '').split(':');
+                    if (h1 && h2) totalHours += (parseInt(h2) - parseInt(h1)) * 60 + (parseInt(m2 || 0) - parseInt(m1 || 0));
+                }
+            });
+            const hours = Math.floor(totalHours / 60), mins = totalHours % 60;
+            document.getElementById('totalHours').textContent = `${hours}h ${mins}m`;
+            document.getElementById('attendanceRate').textContent = days > 0 ? Math.round((days / 22) * 100) + '%' : '0%';
+            document.getElementById('totalPoints').textContent = Math.floor(days * 10);
+            document.getElementById('productivityScore').textContent = Math.round((days / 22) * 100) + '%';
+        }
+
+        document.getElementById('reportType').addEventListener('change', (e) => {
+            document.getElementById('dateRangeFields').style.display = e.target.value === 'custom' ? 'block' : 'none';
+        });
+
+        document.getElementById('reportForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const type = document.getElementById('reportType').value;
+            const notes = document.getElementById('reportNotes').value;
+            const reports = getReportsData() || [];
+            reports.push({
+                type, notes, date: new Date().toISOString(), status: 'submitted'
+            });
+            saveReportsData(reports);
+            showToast('Report submitted successfully!', 'success');
+            document.getElementById('reportForm').reset();
+        });
+        
+        // Close profile modal on close button
+        const modal = document.getElementById('profileModal');
+        if (modal) {
+            document.getElementById('modalClose').addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            document.getElementById('modalCancel').addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

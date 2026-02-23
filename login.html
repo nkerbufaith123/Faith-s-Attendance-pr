@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - AttendancePro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.html" class="navbar-logo">
+                    <span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span>
+                </a>
+
+                <div class="navbar-menu">
+                    <a href="index.html#features" class="nav-link">Features</a>
+                    <a href="index.html#pricing" class="nav-link">Pricing</a>
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </div>
+
+                <div class="navbar-actions">
+                    <a href="signup.html" class="btn-cta">Sign Up</a>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="index.html#pricing" class="nav-link">Pricing</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="signup.html" class="btn-cta">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-content">
+                <div class="auth-header">
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to your AttendancePro account</p>
+                </div>
+
+                <form id="loginForm" class="auth-form" method="POST" action="login.php">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="you@example.com" 
+                            required
+                        >
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-input-group">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="••••••••" 
+                                required
+                            >
+                            <button type="button" class="toggle-password-btn" data-target="password" aria-label="Toggle password visibility">
+                                <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <svg class="eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+
+                    <div class="remember-forgot">
+                        <label class="remember-me">
+                            <input type="checkbox" name="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <div id="generalError" class="error-message" style="margin-bottom: 1rem;"></div>
+
+                    <button type="submit" class="btn-auth">Sign In</button>
+
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                    </div>
+                </form>
+
+                <div class="auth-benefits">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🔒</span>
+                        <span>Secure authentication</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">⚡</span>
+                        <span>Fast login</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🌐</span>
+                        <span>Access anywhere</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-info">
+                <div class="info-card">
+                    <h3>Get More Done</h3>
+                    <ul>
+                        <li>✓ Track employee attendance</li>
+                        <li>✓ Generate real-time reports</li>
+                        <li>✓ Manage work schedules</li>
+                        <li>✓ Monitor productivity</li>
+                        <li>✓ Integrate with tools</li>
+                        <li>✓ Secure your data</li>
+                    </ul>
+                </div>
+
+                <div class="info-testimonial">
+                    <p class="testimonial-text">"AttendancePro has completely transformed how we manage our team. The real-time tracking and analytics are invaluable."</p>
+                    <p class="testimonial-author">— Sarah Johnson, HR Director</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 AttendancePro. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin-auth.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

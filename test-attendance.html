@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0b1c3d 0%, #1e3a5f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(63, 169, 255, 0.2);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #3fa9ff;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .test-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(63, 169, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .test-section h2 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-check-in {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+        }
+
+        .btn-check-in:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-check-out {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .btn-check-out:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-clear {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-clear:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .display-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(63, 169, 255, 0.2);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 300px;
+            overflow-y: auto;
+            word-break: break-all;
+        }
+
+        .today-status {
+            background: rgba(63, 169, 255, 0.1);
+            border: 1px solid rgba(63, 169, 255, 0.3);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            color: #3fa9ff;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            color: #fff;
+        }
+
+        .stat-item .label {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3fa9ff;
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .toast {
+            background: rgba(11, 28, 61, 0.95);
+            border: 1px solid rgba(63, 169, 255, 0.3);
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideInRight 0.3s ease;
+            min-width: 300px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .toast.success {
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .toast.success::before {
+            content: '✓';
+            color: #22c55e;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .toast.error {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .toast.error::before {
+            content: '✕';
+            color: #ef4444;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .toast.warning {
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .toast.warning::before {
+            content: '⚠';
+            color: #f59e0b;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(2rem);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .history-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 3px solid #3fa9ff;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            color: #fff;
+        }
+
+        .history-item .date {
+            font-weight: bold;
+            color: #3fa9ff;
+        }
+
+        .history-item .times {
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            color: #ccc;
+        }
+
+        .history-item .method {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Attendance System Test</h1>
+
+        <!-- Today's Status -->
+        <div class="today-status" id="todayStatus">
+            Loading...
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="test-section">
+            <h2>⏱️ Quick Actions</h2>
+            <div class="button-group">
+                <button id="checkInBtn" class="btn-check-in">
+                    <span>✓</span> Check In
+                </button>
+                <button id="checkOutBtn" class="btn-check-out">
+                    <span>→</span> Check Out
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="test-section">
+            <h2>📊 Statistics</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="label">Total Days</div>
+                    <div class="value" id="statTotalDays">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="label">Complete Days</div>
+                    <div class="value" id="statCompleteDays">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="label">Attendance %</div>
+                    <div class="value" id="statAttendancePercent">0%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="label">Total Hours</div>
+                    <div class="value" id="statTotalHours">0h</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attendance History -->
+        <div class="test-section">
+            <h2>📋 Attendance History (Last 7 Days)</h2>
+            <div id="historyList" class="display-box" style="max-height: 250px;"></div>
+            <button id="clearBtn" class="btn-clear" style="margin-top: 1rem; width: 100%;">
+                🗑️ Clear All Data
+            </button>
+        </div>
+
+        <!-- Debug Info -->
+        <div class="test-section">
+            <h2>🔍 Debug Info</h2>
+            <div id="debugInfo" class="display-box"></div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="attendance-manager.js"></script>
+    <script>
+        /**
+         * Test Attendance System
+         */
+
+        // Utility function to show toast
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(400px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Update all displays
+        function updateDisplay() {
+            updateTodayStatus();
+            updateStats();
+            updateHistory();
+            updateDebugInfo();
+        }
+
+        // Update today's status
+        function updateTodayStatus() {
+            const today = attendanceManager.getToday();
+            const record = attendanceManager.getTodayRecord();
+            const statusEl = document.getElementById('todayStatus');
+
+            if (record.checkIn && record.checkOut) {
+                statusEl.innerHTML = `
+                    <strong>✓ Today - Complete</strong><br>
+                    Check-in: ${record.checkIn} | Check-out: ${record.checkOut}<br>
+                    <small>Method: ${record.method || 'Manual'}</small>
+                `;
+            } else if (record.checkIn) {
+                statusEl.innerHTML = `
+                    <strong>⏳ Today - Checked In</strong><br>
+                    Check-in: ${record.checkIn} | Check-out: Not yet<br>
+                    <small>Method: ${record.method || 'Manual'}</small>
+                `;
+            } else {
+                statusEl.innerHTML = '<strong>📌 Today - Not started</strong><br>Click "Check In" to record your presence.';
+            }
+        }
+
+        // Update statistics
+        function updateStats() {
+            const stats = attendanceManager.getStats();
+            document.getElementById('statTotalDays').textContent = stats.totalDays;
+            document.getElementById('statCompleteDays').textContent = stats.completeDays;
+            document.getElementById('statAttendancePercent').textContent = stats.attendancePercentage + '%';
+            document.getElementById('statTotalHours').textContent = stats.totalHours + 'h';
+        }
+
+        // Update history
+        function updateHistory() {
+            const history = attendanceManager.getHistory(7);
+            const historyEl = document.getElementById('historyList');
+
+            if (history.length === 0) {
+                historyEl.innerHTML = '<p style="color: #999;">No attendance records yet</p>';
+                return;
+            }
+
+            historyEl.innerHTML = history.map(item => `
+                <div class="history-item">
+                    <div class="date">${item.date}</div>
+                    <div class="times">In: ${item.checkIn} | Out: ${item.checkOut}</div>
+                    <div class="method">Method: ${item.method}</div>
+                </div>
+            `).join('');
+        }
+
+        // Update debug info
+        function updateDebugInfo() {
+            const records = attendanceManager.getAllRecords();
+            const debugEl = document.getElementById('debugInfo');
+            debugEl.textContent = 'localStorage.attendanceData:\n\n' + JSON.stringify(records, null, 2);
+        }
+
+        // Event handlers
+        document.getElementById('checkInBtn').addEventListener('click', () => {
+            console.log('Check-In clicked');
+            const result = attendanceManager.checkIn();
+            showToast(result.message, result.type);
+            updateDisplay();
+        });
+
+        document.getElementById('checkOutBtn').addEventListener('click', () => {
+            console.log('Check-Out clicked');
+            const result = attendanceManager.checkOut();
+            showToast(result.message, result.type);
+            updateDisplay();
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear all attendance data?')) {
+                localStorage.removeItem('attendanceData');
+                showToast('✓ All data cleared', 'success');
+                updateDisplay();
+            }
+        });
+
+        // Initialize display
+        updateDisplay();
+
+        // Auto-update every 30 seconds
+        setInterval(updateDisplay, 30000);
+    </script>
+</body>
+</html>

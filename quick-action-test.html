@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Quick Action Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 1rem; background:#f6f8fb; }
+    .result { padding:0.5rem 0; }
+    .pass { color: #0a8; }
+    .fail { color: #d00; }
+    .panel { background: #fff; padding:1rem; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+    .controls { margin:1rem 0; display:flex; gap:0.5rem; }
+  </style>
+</head>
+<body>
+  <h2>Quick Action Integration Test</h2>
+  <div class="panel">
+    <p>This page sets a mock user, loads the app scripts, simulates Check In and Check Out clicks, and reports results.</p>
+    <div class="controls">
+      <button id="runTest">Run Test</button>
+      <button id="clearData">Clear attendanceData</button>
+    </div>
+    <div id="log"></div>
+  </div>
+
+  <script>
+    // Prepare mock user so scripts won't redirect to login
+    localStorage.setItem('currentUser', JSON.stringify({ firstName: 'QA', lastName: 'Tester', email: 'qa@test.local' }));
+
+    function append(msg, cls) {
+      const el = document.createElement('div'); el.className = 'result '+(cls||''); el.textContent = msg; document.getElementById('log').appendChild(el);
+    }
+
+    document.getElementById('clearData').addEventListener('click', () => {
+      localStorage.removeItem('attendanceData');
+      append('Cleared attendanceData', '');
+    });
+
+    document.getElementById('runTest').addEventListener('click', async () => {
+      document.getElementById('log').innerHTML = '';
+      append('Loading app scripts...', '');
+
+      // Dynamically load scripts in order
+      const loadScript = (src) => new Promise((res, rej) => {
+        const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.body.appendChild(s);
+      });
+
+      try {
+        // Load shared app and dashboard scripts
+        await loadScript('js/app.js');
+        await loadScript('dashboard.js');
+        append('Scripts loaded', '');
+      } catch (e) {
+        append('Error loading scripts: ' + e, 'fail');
+        return;
+      }
+
+      // Wait briefly for initialization
+      await new Promise(r => setTimeout(r, 600));
+
+      const today = new Date().toISOString().split('T')[0];
+
+      function hasCheckIn() {
+        const attendance = JSON.parse(localStorage.getItem('attendanceData') || '{}');
+        return attendance[today] && attendance[today].checkIn;
+      }
+      function hasCheckOut() {
+        const attendance = JSON.parse(localStorage.getItem('attendanceData') || '{}');
+        return attendance[today] && attendance[today].checkOut;
+      }
+
+      // Simulate Check In
+      const inBtn = document.getElementById('checkInBtn');
+      if (!inBtn) { append('checkInBtn not found', 'fail'); return; }
+      inBtn.click();
+      append('Clicked Check In button', '');
+      await new Promise(r => setTimeout(r, 700));
+
+      if (hasCheckIn()) append('Check In recorded in localStorage ✓', 'pass'); else append('Check In NOT recorded ✗', 'fail');
+
+      // Simulate Check Out
+      const outBtn = document.getElementById('checkOutBtn');
+      if (!outBtn) { append('checkOutBtn not found', 'fail'); return; }
+      outBtn.click();
+      append('Clicked Check Out button', '');
+      await new Promise(r => setTimeout(r, 700));
+
+      if (hasCheckOut()) append('Check Out recorded in localStorage ✓', 'pass'); else append('Check Out NOT recorded ✗', 'fail');
+
+      // Inspect toasts
+      const toasts = document.querySelectorAll('.toast');
+      append('Toasts detected: ' + toasts.length, '');
+      toasts.forEach(t => append('• ' + t.textContent.trim(), ''));
+
+      append('Test finished', '');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AttendancePro - Smart Workforce Solution</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="navbar-logo">
+                    <span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span>
+                </div>
+
+                <div class="navbar-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#how-it-works" class="nav-link">Process</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <div class="navbar-actions">
+                    <a href="login.html" class="btn-login">Login</a>
+                    <a href="signup.html" class="btn-cta">Get Started</a>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#how-it-works" class="nav-link">Process</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="signup.html" class="btn-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <span class="badge-icon">✨</span>
+                        <span class="badge-text">Smart Workforce Solution</span>
+                    </div>
+
+                    <h1 class="hero-title">Track Attendance <span class="gradient-text">Smarter</span>.</h1>
+
+                    <p class="hero-description">
+                        Automate employee attendance, monitor work hours in real time, and gain actionable insights with our intelligent attendance system.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="signup.html" class="btn-primary">Get Started <span class="arrow">→</span></a>
+                        <button class="btn-secondary">
+                            <span class="play-icon">▶</span> View Demo
+                        </button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">50K+</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">99.9%</div>
+                            <div class="stat-label">Uptime SLA</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="hero-image">
+                        <div class="image-glow"></div>
+                        <img src="images/dashboard faith.jpg" alt="Dashboard Preview" class="dashboard-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features/Services Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Features</div>
+                <h2>Powerful Features for <span class="gradient-text">Every Need</span></h2>
+                <p>Enterprise-grade tools designed to streamline attendance management and boost productivity</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="icon-qr">📱</span>
+                    </div>
+                    <h3>Smart QR Codes</h3>
+                    <p>Quickly generate QR codes for attendance or access control. Secure, scannable, and integrated with your system.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="icon-analytics">📊</span>
+                    </div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Live dashboards with employee check-ins, attendance trends, and actionable workforce insights.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="icon-reports">📋</span>
+                    </div>
+                    <h3>Custom Reports</h3>
+                    <p>Exportable attendance logs, insights, and custom reports tailored to your business needs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="icon-security">🔒</span>
+                    </div>
+                    <h3>Secure Access</h3>
+                    <p>Two-factor authentication and encrypted data ensure your workforce information stays protected.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="icon-platform">⚡</span>
+                    </div>
+                    <h3>Multi-Platform Support</h3>
+                    <p>Works seamlessly on desktop, tablet, and mobile devices. Access anywhere, anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Process</div>
+                <h2>How It <span class="gradient-text">Works</span></h2>
+                <p>Get started in minutes with our streamlined four-step process</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">👤</div>
+                    <h3>Create QR or User Profile</h3>
+                    <p>Set up employee profiles and generate unique QR codes for seamless check-ins.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">📸</div>
+                    <h3>Check-In & Track Attendance</h3>
+                    <p>Employees scan QR codes or use the app to mark attendance instantly.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">📈</div>
+                    <h3>Monitor & Analyze Data</h3>
+                    <p>View real-time dashboards with attendance metrics, trends, and insights.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">📊</div>
+                    <h3>Optimize Workforce</h3>
+                    <p>Use data-driven insights to improve scheduling, productivity, and efficiency.</p>
+                </div>
+            </div>
+
+            <div class="section-cta">
+                <a href="signup.html" class="btn-primary">Start Your Free Trial</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Testimonials</div>
+                <h2>What Our <span class="gradient-text">Clients Say</span></h2>
+                <p>Trusted by thousands of businesses worldwide</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">❝</div>
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">AttendancePro transformed how we manage our workforce. The real-time analytics and seamless QR integration saved us countless hours.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1629507208649-70919ca33793?w=50&h=50&fit=crop" alt="Sarah Johnson" class="author-img">
+                        <div>
+                            <div class="author-name">Sarah Johnson</div>
+                            <div class="author-role">HR Director, TechCorp</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">❝</div>
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">The multi-platform support is incredible. Our field teams can clock in from anywhere, and we have full visibility in real time.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1629507208649-70919ca33793?w=50&h=50&fit=crop" alt="Michael Chen" class="author-img">
+                        <div>
+                            <div class="author-name">Michael Chen</div>
+                            <div class="author-role">Operations Manager, BuildRight</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">❝</div>
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-content">Best investment we made this year. The secure access features and custom reports give us the insights we need to grow efficiently.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1629507208649-70919ca33793?w=50&h=50&fit=crop" alt="Emily Rodriguez" class="author-img">
+                        <div>
+                            <div class="author-name">Emily Rodriguez</div>
+                            <div class="author-role">CEO, StartupHub</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Pricing</div>
+                <h2>Choose Your <span class="gradient-text">Perfect Plan</span></h2>
+                <p>Flexible pricing options to match your business needs</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-icon">⚡</div>
+                    <h3>Starter</h3>
+                    <p>Perfect for small teams getting started</p>
+                    <div class="pricing-amount">
+                        <span class="price">$29</span>
+                        <span class="period">/per month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Up to 50 employees</li>
+                        <li>✓ Basic QR code generation</li>
+                        <li>✓ Mobile app access</li>
+                        <li>✓ Email support</li>
+                        <li>✓ Standard analytics</li>
+                    </ul>
+                    <button class="btn-pricing">Get Started</button>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="pricing-popular-badge">Most Popular</div>
+                    <div class="pricing-icon">👑</div>
+                    <h3>Professional</h3>
+                    <p>Ideal for growing businesses</p>
+                    <div class="pricing-amount">
+                        <span class="price">$79</span>
+                        <span class="period">/per month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Up to 500 employees</li>
+                        <li>✓ Advanced QR features</li>
+                        <li>✓ Multi-platform support</li>
+                        <li>✓ Priority support</li>
+                        <li>✓ Advanced analytics</li>
+                        <li>✓ Custom reports</li>
+                        <li>✓ API access</li>
+                    </ul>
+                    <button class="btn-pricing primary">Get Started</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-icon">🏢</div>
+                    <h3>Enterprise</h3>
+                    <p>For large organizations</p>
+                    <div class="pricing-amount">
+                        <span class="price">Custom</span>
+                        <span class="period">contact us</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Unlimited employees</li>
+                        <li>✓ White-label solution</li>
+                        <li>✓ Dedicated support</li>
+                        <li>✓ Custom integrations</li>
+                        <li>✓ Advanced security</li>
+                        <li>✓ SLA guarantee</li>
+                        <li>✓ Training & onboarding</li>
+                    </ul>
+                    <button class="btn-pricing">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section class="integrations">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Integrations</div>
+                <h2>Seamlessly <span class="gradient-text">Integrates</span></h2>
+                <p>Connect with your favorite tools and apps. Works with your workflow, not against it.</p>
+            </div>
+
+            <div class="integrations-grid">
+                <div class="integration-card">
+                    <div class="integration-logo">💬</div>
+                    <div class="integration-name">Slack</div>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">🔍</div>
+                    <div class="integration-name">Google Workspace</div>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">📧</div>
+                    <div class="integration-name">Microsoft Teams</div>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">☁️</div>
+                    <div class="integration-name">Salesforce</div>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">📹</div>
+                    <div class="integration-name">Zoom</div>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">📊</div>
+                    <div class="integration-name">Jira</div>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">📋</div>
+                    <div class="integration-name">Trello</div>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">✅</div>
+                    <div class="integration-name">Asana</div>
+                </div>
+            </div>
+
+            <div class="integrations-footer">
+                <p>+ 50 more integrations available <a href="#">View all →</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">FAQ</div>
+                <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
+                <p>Everything you need to know about AttendancePro</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" data-faq="0">
+                        <span>How does the QR code attendance system work?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer" data-faq="0">
+                        <p>Employees simply scan a unique QR code using their mobile device to check in and out. The system instantly records their attendance and syncs it with your dashboard in real-time.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-faq="1">
+                        <span>Can I customize the attendance tracking settings?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer" data-faq="1">
+                        <p>Yes! You can configure work schedules, break times, overtime rules, and custom attendance policies. The system adapts to your business needs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-faq="2">
+                        <span>Is my data secure?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer" data-faq="2">
+                        <p>Absolutely. We use enterprise-grade encryption, two-factor authentication, and comply with international data protection standards including GDPR and SOC 2.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-faq="3">
+                        <span>What devices are supported?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer" data-faq="3">
+                        <p>AttendancePro works on all modern devices - iOS, Android, tablets, and desktop browsers. No special hardware required.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-faq="4">
+                        <span>Can I export attendance reports?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer" data-faq="4">
+                        <p>Yes, you can export detailed reports in multiple formats (PDF, Excel, CSV) with custom date ranges and filters.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" data-faq="5">
+                        <span>Do you offer customer support?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer" data-faq="5">
+                        <p>We provide 24/7 email support for all plans, with priority support and dedicated account managers for Professional and Enterprise plans.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-footer">
+                <p>Still have questions? <a href="#contact">Contact our support team →</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-badge">
+                    <span class="badge-icon">✨</span>
+                    <span class="badge-text">Start Free Today</span>
+                </div>
+
+                <h2>Ready to Transform <span class="gradient-text">Attendance Management</span>?</h2>
+
+                <p>Join thousands of businesses using AttendancePro to streamline workforce management, reduce errors, and boost productivity.</p>
+
+                <div class="cta-buttons">
+                    <a href="signup.html" class="btn-primary">Get Started Today <span class="arrow">→</span></a>
+                    <button class="btn-secondary">Schedule Demo</button>
+                </div>
+
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <span class="dot">●</span>
+                        <span>No credit card required</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="dot">●</span>
+                        <span>14-day free trial</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="dot">●</span>
+                        <span>Cancel anytime</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span>
+                    </div>
+                    <p class="footer-description">
+                        Smart attendance management and QR code system for modern businesses. Secure, intelligent, and enterprise-ready.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" title="Facebook">f</a>
+                        <a href="#" class="social-icon" title="Twitter">𝕏</a>
+                        <a href="#" class="social-icon" title="LinkedIn">in</a>
+                        <a href="#" class="social-icon" title="Instagram">📷</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <span class="contact-icon">✉</span>
+                            <div>
+                                <div class="contact-label">Email</div>
+                                <a href="mailto:support@attendancepro.com">support@attendancepro.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">☎</span>
+                            <div>
+                                <div class="contact-label">Phone</div>
+                                <a href="tel:+1234567890">+1 (234) 567-8900</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <div class="contact-label">Address</div>
+                                <span>123 Tech Boulevard, Suite 500<br>San Francisco, CA 94105</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 HND Defence project AttendancePro. All rights reserved [ By Nkerbu Faith ].</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+  
