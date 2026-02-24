@@ -10,37 +10,32 @@
 </head>
 <body>
     <nav class="navbar dashboard-navbar">
-            <div class="navbar-content">
-                <a href="dashboard.html" class="navbar-logo"><span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span></a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn" style="display:none;">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="navbar-right">
-                    <div class="navbar-user">
-                        <div class="user-profile-section">
-                            <img src="https://ui-avatars.com/api/?name=User&background=3FA9FF&color=fff" alt="Profile" class="profile-picture" id="profilePicture">
-                            <div class="user-info">
-                                <span class="user-greeting" id="userGreeting">Welcome, <strong id="userFirstName">User</strong></span>
-                                <span class="user-email" id="userEmail">user@example.com</span>
-                            </div>
+        <div class="navbar-content">
+            <a href="dashboard.html" class="navbar-logo"><span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="navbar-right">
+                <div class="navbar-user">
+                    <div class="user-profile-section">
+                        <img src="https://ui-avatars.com/api/?name=User&background=3FA9FF&color=fff" alt="Profile" class="profile-picture" id="profilePicture">
+                        <div class="user-info">
+                            <span class="user-email" id="userEmail">user@example.com</span>
                         </div>
-                        <button class="btn-logout" id="logoutBtn">Logout</button>
                     </div>
+                    <button class="btn-navbar-logout" id="navLogoutBtn">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Logout</span>
+                    </button>
                 </div>
             </div>
-            <div class="mobile-menu" id="mobileMenu" style="display:none;">
-                <a href="dashboard.html" class="sidebar-item">Dashboard</a>
-                <a href="attendance.html" class="sidebar-item">Attendance</a>
-                <a href="reports.html" class="sidebar-item">Reports</a>
-                <a href="task.html" class="sidebar-item active">Task</a>
-                <a href="settings.html" class="sidebar-item">Account Settings</a>
-            </div>
+        </div>
     </nav>
 
     <div class="dashboard-wrapper">
-        <aside class="sidebar">
+        <aside class="dashboard-sidebar">
             <nav class="sidebar-nav">
                 <a href="dashboard.html" class="sidebar-item">
                     <i class="bi bi-speedometer2 sidebar-icon"></i>

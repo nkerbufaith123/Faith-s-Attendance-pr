@@ -516,6 +516,7 @@ function initializeActivity(user) {
 function setupLogout() {
     const logoutBtn = document.getElementById('logoutBtn');
     const logoutBtnMobile = document.getElementById('logoutBtnMobile');
+    const navLogoutBtn = document.getElementById('navLogoutBtn');
     
     const logout = () => {
         // Clear session
@@ -532,6 +533,10 @@ function setupLogout() {
     
     if (logoutBtnMobile) {
         logoutBtnMobile.addEventListener('click', logout);
+    }
+    
+    if (navLogoutBtn) {
+        navLogoutBtn.addEventListener('click', logout);
     }
 }
 // ============================================
