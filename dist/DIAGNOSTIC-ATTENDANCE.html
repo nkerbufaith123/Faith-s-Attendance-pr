@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL: Attendance System Diagnostic</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #0b1c3d;
+            color: #fff;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background: #1a2f4f;
+            border: 2px solid #3fa9ff;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: #3fa9ff;
+            border-bottom: 2px solid #3fa9ff;
+            padding-bottom: 1rem;
+        }
+        
+        h2 {
+            color: #22c55e;
+            margin-top: 1rem;
+        }
+        
+        .status {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .status.ok {
+            background: #16a34a;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .status.error {
+            background: #7f1d1d;
+            border-left: 4px solid #ef4444;
+        }
+        
+        .status.warning {
+            background: #7f6114;
+            border-left: 4px solid #eab308;
+        }
+        
+        button {
+            padding: 1rem 2rem;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        
+        .btn-check-in {
+            background: #22c55e;
+            color: #000;
+        }
+        
+        .btn-check-out {
+            background: #ef4444;
+            color: #fff;
+        }
+        
+        .btn-clear {
+            background: #6366f1;
+            color: #fff;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .output {
+            background: #0f172a;
+            border: 1px solid #3fa9ff;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 1rem;
+            max-height: 400px;
+            overflow-y: auto;
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .log-entry {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-left: 2px solid #3fa9ff;
+            padding-left: 1rem;
+        }
+        
+        .log-entry.success {
+            border-left-color: #22c55e;
+            color: #86efac;
+        }
+        
+        .log-entry.error {
+            border-left-color: #ef4444;
+            color: #fca5a5;
+        }
+        
+        .log-entry.warning {
+            border-left-color: #eab308;
+            color: #fef08a;
+        }
+        
+        .attendance-record {
+            background: #1e3a5f;
+            border: 1px solid #3fa9ff;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+        }
+        
+        .attendance-record p {
+            margin: 0.5rem 0;
+            font-size: 14px;
+        }
+        
+        .label {
+            color: #94a3b8;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔴 CRITICAL DIAGNOSIS: Attendance System</h1>
+        
+        <div id="systemStatus"></div>
+        
+        <h2>🧪 TEST CONTROLS</h2>
+        <button class="btn-check-in" onclick="testCheckIn()">✓ TEST CHECK-IN</button>
+        <button class="btn-check-out" onclick="testCheckOut()">→ TEST CHECK-OUT</button>
+        <button class="btn-clear" onclick="testClear()">🗑 CLEAR DATA</button>
+        
+        <h2>📋 ATTENDANCE RECORDS</h2>
+        <div id="attendanceDisplay" class="attendance-record"></div>
+        
+        <h2>📊 DIAGNOSTIC LOG</h2>
+        <div id="diagnosticLog" class="output"></div>
+    </div>
+
+    <script>
+        // Simple logging function
+        const logs = [];
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = `[${timestamp}] ${message}`;
+            logs.push({ message: entry, type });
+            updateLog();
+            console.log(message);
+        }
+
+        function updateLog() {
+            const logDiv = document.getElementById('diagnosticLog');
+            logDiv.innerHTML = logs.map(l => 
+                `<div class="log-entry ${l.type}">${l.message}</div>`
+            ).join('');
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        // Diagnostic function
+        function runDiagnostics() {
+            log('=== STARTING DIAGNOSTICS ===', 'warning');
+            
+            // Check localStorage
+            try {
+                let testData = localStorage.getItem('attendanceData');
+                if (testData) {
+                    log('✓ localStorage available', 'success');
+                    const parsed = JSON.parse(testData);
+                    log(`✓ Found ${Object.keys(parsed).length} attendance records`, 'success');
+                } else {
+                    log('✓ localStorage available (no records yet)', 'success');
+                }
+            } catch (e) {
+                log('❌ localStorage ERROR: ' + e.message, 'error');
+            }
+            
+            // Check DOM elements
+            const checkInBtn = document.querySelector('[id="checkInBtn"]');
+            const checkOutBtn = document.querySelector('[id="checkOutBtn"]');
+            
+            if (checkInBtn) {
+                log('✓ Check-In button found in DOM', 'success');
+            } else {
+                log('❌ Check-In button NOT FOUND', 'error');
+            }
+            
+            if (checkOutBtn) {
+                log('✓ Check-Out button found in DOM', 'success');
+            } else {
+                log('❌ Check-Out button NOT FOUND', 'error');
+            }
+            
+            updateAttendanceDisplay();
+            log('=== DIAGNOSTICS COMPLETE ===', 'warning');
+        }
+
+        // Check-In Test
+        function testCheckIn() {
+            log('>>> EXECUTING CHECK-IN TEST <<<', 'warning');
+            
+            try {
+                const today = new Date().toISOString().split('T')[0];
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const time = `${hours}:${minutes}:${seconds}`;
+                
+                log(`Date: ${today}, Time: ${time}`, 'info');
+                
+                // Get existing data
+                const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
+                const todayRecord = attendanceData[today] || {};
+                
+                // Validation
+                if (todayRecord.checkIn && !todayRecord.checkOut) {
+                    log(`⚠️ Already checked in at ${todayRecord.checkIn}`, 'warning');
+                    return;
+                }
+                
+                // Save
+                attendanceData[today] = attendanceData[today] || {};
+                attendanceData[today].checkIn = time;
+                attendanceData[today].method = 'Manual';
+                attendanceData[today].status = 'Checked In';
+                attendanceData[today].checkInTimestamp = new Date().toISOString();
+                
+                localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
+                
+                log(`✓ CHECK-IN RECORDED: ${time}`, 'success');
+                log('✓ Data saved to localStorage', 'success');
+                
+                updateAttendanceDisplay();
+                
+            } catch (error) {
+                log(`❌ CHECK-IN ERROR: ${error.message}`, 'error');
+            }
+        }
+
+        // Check-Out Test
+        function testCheckOut() {
+            log('>>> EXECUTING CHECK-OUT TEST <<<', 'warning');
+            
+            try {
+                const today = new Date().toISOString().split('T')[0];
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const time = `${hours}:${minutes}:${seconds}`;
+                
+                log(`Date: ${today}, Time: ${time}`, 'info');
+                
+                // Get existing data
+                const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
+                const todayRecord = attendanceData[today] || {};
+                
+                // Validation
+                if (!todayRecord.checkIn) {
+                    log('⚠️ No check-in recorded yet. Please check-in first.', 'warning');
+                    return;
+                }
+                
+                if (todayRecord.checkOut) {
+                    log(`⚠️ Already checked out at ${todayRecord.checkOut}`, 'warning');
+                    return;
+                }
+                
+                // Save
+                attendanceData[today].checkOut = time;
+                attendanceData[today].status = 'Checked Out';
+                attendanceData[today].checkOutTimestamp = new Date().toISOString();
+                
+                localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
+                
+                log(`✓ CHECK-OUT RECORDED: ${time}`, 'success');
+                log('✓ Data saved to localStorage', 'success');
+                
+                updateAttendanceDisplay();
+                
+            } catch (error) {
+                log(`❌ CHECK-OUT ERROR: ${error.message}`, 'error');
+            }
+        }
+
+        // Clear Data
+        function testClear() {
+            if (confirm('Clear all attendance data?')) {
+                localStorage.removeItem('attendanceData');
+                log('✓ All attendance data cleared', 'success');
+                updateAttendanceDisplay();
+            }
+        }
+
+        // Update display
+        function updateAttendanceDisplay() {
+            const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
+            const today = new Date().toISOString().split('T')[0];
+            const todayRecord = attendanceData[today] || {};
+            
+            const display = document.getElementById('attendanceDisplay');
+            
+            if (!todayRecord.checkIn && !todayRecord.checkOut) {
+                display.innerHTML = '<p><span class="label">Status:</span> No Records for Today</p>';
+                return;
+            }
+            
+            let html = `
+                <p><span class="label">Date:</span> ${today}</p>
+                <p><span class="label">Check-In:</span> ${todayRecord.checkIn || 'Not recorded'}</p>
+                <p><span class="label">Check-Out:</span> ${todayRecord.checkOut || 'Not recorded'}</p>
+                <p><span class="label">Method:</span> ${todayRecord.method || 'Unknown'}</p>
+                <p><span class="label">Status:</span> ${todayRecord.status || 'Unknown'}</p>
+            `;
+            
+            if (todayRecord.checkIn && todayRecord.checkOut) {
+                html += `<p style="color: #22c55e; font-weight: bold;">✓ Complete</p>`;
+            } else if (todayRecord.checkIn) {
+                html += `<p style="color: #eab308;">⚠️ Checked in (waiting for check-out)</p>`;
+            }
+            
+            display.innerHTML = html;
+        }
+
+        // Status check
+        function updateSystemStatus() {
+            const status = document.getElementById('systemStatus');
+            
+            let html = '<h3>System Status</h3>';
+            
+            // Check localStorage
+            try {
+                localStorage.getItem('test');
+                html += '<div class="status ok">✓ localStorage API available</div>';
+            } catch (e) {
+                html += '<div class="status error">❌ localStorage not available</div>';
+            }
+            
+            // Check current time
+            const time = new Date().toLocaleTimeString();
+            html += `<div class="status ok">✓ Current time: ${time}</div>`;
+            
+            status.innerHTML = html;
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            updateSystemStatus();
+            runDiagnostics();
+        });
+
+        // Auto-refresh display every 5 seconds
+        setInterval(updateAttendanceDisplay, 5000);
+    </script>
+</body>
+</html>
