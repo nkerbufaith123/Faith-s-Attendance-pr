@@ -69,16 +69,19 @@ export function Navigation() {
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <motion.button
+            <motion.a
+              href="/login.html"
               className="px-5 py-2 text-[#A7B3C5] hover:text-[#3FA9FF] transition-all duration-300 font-medium"
               whileHover={{ scale: 1.05 }}
             >
               Login
-            </motion.button>
-            <motion.button
+            </motion.a>
+            <motion.a
+              href="/signup.html"
               className="px-6 py-2 rounded-full text-white font-medium relative overflow-hidden group"
               style={{
                 background: 'linear-gradient(135deg, #3FA9FF 0%, #5B2EFF 100%)',
+                display: 'inline-block'
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -90,7 +93,7 @@ export function Navigation() {
                   background: 'linear-gradient(135deg, #4FD1FF 0%, #1F4FFF 100%)',
                 }}
               />
-            </motion.button>
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -120,15 +123,16 @@ export function Navigation() {
               </button>
             ))}
             <div className="flex flex-col space-y-3 pt-4 border-t border-[#3FA9FF]/20">
-              <button className="text-[#A7B3C5] font-medium">Login</button>
-              <button
-                className="px-6 py-2 rounded-full text-white font-medium"
+              <a href="/login.html" className="text-[#A7B3C5] font-medium">Login</a>
+              <a
+                href="/signup.html"
+                className="px-6 py-2 rounded-full text-white font-medium inline-block"
                 style={{
                   background: 'linear-gradient(135deg, #3FA9FF 0%, #5B2EFF 100%)',
                 }}
               >
                 Get Started
-              </button>
+              </a>
             </div>
           </motion.div>
         )}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks - AttendancePro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <nav class="navbar dashboard-navbar">
+            <div class="navbar-content">
+                <a href="dashboard.html" class="navbar-logo"><span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span></a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" style="display:none;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="navbar-right">
+                    <div class="navbar-user">
+                        <div class="user-profile-section">
+                            <img src="https://ui-avatars.com/api/?name=User&background=3FA9FF&color=fff" alt="Profile" class="profile-picture" id="profilePicture">
+                            <div class="user-info">
+                                <span class="user-greeting" id="userGreeting">Welcome, <strong id="userFirstName">User</strong></span>
+                                <span class="user-email" id="userEmail">user@example.com</span>
+                            </div>
+                        </div>
+                        <button class="btn-logout" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu" id="mobileMenu" style="display:none;">
+                <a href="dashboard.html" class="sidebar-item">Dashboard</a>
+                <a href="attendance.html" class="sidebar-item">Attendance</a>
+                <a href="reports.html" class="sidebar-item">Reports</a>
+                <a href="task.html" class="sidebar-item active">Task</a>
+                <a href="settings.html" class="sidebar-item">Account Settings</a>
+            </div>
+    </nav>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-item">
+                    <i class="bi bi-speedometer2 sidebar-icon"></i>
+                    <span class="sidebar-label">Dashboard</span>
+                </a>
+                <a href="attendance.html" class="sidebar-item">
+                    <i class="bi bi-clock sidebar-icon"></i>
+                    <span class="sidebar-label">Attendance</span>
+                </a>
+                <a href="reports.html" class="sidebar-item">
+                    <i class="bi bi-bar-chart-line-fill sidebar-icon"></i>
+                    <span class="sidebar-label">Reports</span>
+                </a>
+                <a href="task.html" class="sidebar-item active">
+                    <i class="bi bi-list-task sidebar-icon"></i>
+                    <span class="sidebar-label">Task</span>
+                </a>
+                <a href="settings.html" class="sidebar-item">
+                    <i class="bi bi-gear-fill sidebar-icon"></i>
+                    <span class="sidebar-label">Account Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <section class="dashboard-section">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <h1>Tasks</h1>
+                    <p>Manage your daily tasks and submissions</p>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Task Overview</h2>
+                    <div class="stat-actions-grid">
+                        <div class="stat-action primary">
+                            <div class="stat-action-icon"><i class="bi bi-list-check"></i></div>
+                            <div class="stat-action-label">Total Tasks</div>
+                            <div class="stat-action-value" id="totalTasks">0</div>
+                        </div>
+                        <div class="stat-action info">
+                            <div class="stat-action-icon"><i class="bi bi-check-circle-fill"></i></div>
+                            <div class="stat-action-label">Completed</div>
+                            <div class="stat-action-value" id="completedTasks">0</div>
+                        </div>
+                        <div class="stat-action accent">
+                            <div class="stat-action-icon"><i class="bi bi-hourglass-split"></i></div>
+                            <div class="stat-action-label">Pending</div>
+                            <div class="stat-action-value" id="pendingTasks">0</div>
+                        </div>
+                        <div class="stat-action muted">
+                            <div class="stat-action-icon"><i class="bi bi-percent"></i></div>
+                            <div class="stat-action-label">Completion %</div>
+                            <div class="stat-action-value" id="completionPercent">0%</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:2rem;">
+                        <h3 style="margin-bottom:1rem;">Current Tasks</h3>
+                        <div id="tasksList" style="display:flex; flex-direction:column; gap:1rem;"></div>
+                        <button class="btn-primary" style="margin-top:1rem;" id="openSubmitTaskBtn">Submit New Task</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal" id="submittaskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Submit New Task</h2>
+                <button class="modal-close" id="submitTaskClose" type="button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="submitTaskForm" style="display:flex; flex-direction:column; gap:1rem;">
+                    <div>
+                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; opacity:0.7;">Task Title *</label>
+                        <input type="text" id="taskTitle" placeholder="Enter task title" required style="width:100%; padding:0.75rem; background:rgba(15,42,95,0.5); border:1px solid rgba(63,169,255,0.2); border-radius:8px; color:#fff; font-size:0.95rem;">
+                    </div>
+                    <div>
+                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; opacity:0.7;">Description *</label>
+                        <textarea id="taskDesc" placeholder="Task description" required style="width:100%; padding:0.75rem; background:rgba(15,42,95,0.5); border:1px solid rgba(63,169,255,0.2); border-radius:8px; color:#fff; font-size:0.95rem; resize:vertical; min-height:100px;"></textarea>
+                    </div>
+                    <div>
+                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; opacity:0.7;">Priority</label>
+                        <select id="taskPriority" style="width:100%; padding:0.75rem; background:rgba(15,42,95,0.8); border:1px solid rgba(63,169,255,0.3); border-radius:8px; color:#fff; font-size:0.95rem; cursor:pointer;">
+                            <option value="low" style="background:#0B1C3D; color:#fff;">Low</option>
+                            <option value="medium" selected style="background:#0B1C3D; color:#fff;">Medium</option>
+                            <option value="high" style="background:#0B1C3D; color:#fff;">High</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; opacity:0.7;">Submission Date / Time</label>
+                        <input type="datetime-local" id="taskSubmissionDate" style="width:100%; padding:0.75rem; background:rgba(15,42,95,0.5); border:1px solid rgba(63,169,255,0.2); border-radius:8px; color:#fff; font-size:0.95rem;">
+                    </div>
+                    <div>
+                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; opacity:0.7;">Task Status</label>
+                        <select id="taskStatus" style="width:100%; padding:0.75rem; background:rgba(15,42,95,0.8); border:1px solid rgba(63,169,255,0.3); border-radius:8px; color:#fff; font-size:0.95rem; cursor:pointer;">
+                            <option value="pending" selected style="background:#0B1C3D; color:#fff;">Pending</option>
+                            <option value="in-progress" style="background:#0B1C3D; color:#fff;">In Progress</option>
+                            <option value="completed" style="background:#0B1C3D; color:#fff;">Completed</option>
+                            <option value="on-hold" style="background:#0B1C3D; color:#fff;">On Hold</option>
+                        </select>
+                    </div>
+                    <div style="display:flex; gap:1rem; padding-top:0.5rem;">
+                        <button type="button" class="btn-cancel" id="submitTaskCancel" style="flex:1;">Cancel</button>
+                        <button type="submit" class="btn-primary" style="flex:1;">Submit Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Update Profile Picture</h2>
+                <button class="modal-close" id="modalClose" type="button">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <img src="https://ui-avatars.com/api/?name=User&background=3FA9FF&color=fff" id="previewImage" class="profile-preview">
+                <input type="file" id="profileInput" accept="image/*" style="display:none;">
+                <button type="button" class="btn-upload" id="uploadBtn" style="margin-top:1rem;">Choose Image</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" id="modalCancel">Cancel</button>
+                <button type="button" class="btn-cancel" id="clearBtn">Clear</button>
+                <button type="button" class="btn-save" id="saveProfileBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container"></div>
+
+    <script src="js/app.js"></script>
+    <script src="task-manager.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            renderTasks();
+        });
+
+        function renderTasks() {
+            const tasks = getTasksData() || [];
+            const total = tasks.length, completed = tasks.filter(t => t.status === 'completed').length, pending = total - completed;
+            document.getElementById('totalTasks').textContent = total;
+            document.getElementById('completedTasks').textContent = completed;
+            document.getElementById('pendingTasks').textContent = pending;
+            document.getElementById('completionPercent').textContent = total > 0 ? Math.round((completed / total) * 100) + '%' : '0%';
+            
+            const html = tasks.length === 0 ? '<p>No tasks yet.</p>' : tasks.map((t, i) => `
+                <div class="activity-item" style="display:flex; justify-content:space-between; align-items:center;">
+                    <div class="activity-content">
+                        <div class="activity-title">${t.title}</div>
+                        <div class="activity-time">${t.description} | Priority: ${t.priority}</div>
+                    </div>
+                    <span style="padding:0.5rem 1rem; border-radius:6px; font-size:0.85rem; background:${t.status === 'completed' ? '#4CAF50' : '#FF9800'}; color:#fff;">${t.status}</span>
+                </div>
+            `).join('');
+            document.getElementById('tasksList').innerHTML = html;
+        }
+
+        document.getElementById('openSubmitTaskBtn').addEventListener('click', () => {
+            document.getElementById('submittaskModal').style.display = 'flex';
+        });
+
+        document.getElementById('submitTaskClose').addEventListener('click', () => {
+            document.getElementById('submittaskModal').style.display = 'none';
+        });
+
+        document.getElementById('submitTaskCancel').addEventListener('click', () => {
+            document.getElementById('submittaskModal').style.display = 'none';
+        });
+
+        // Close modal when clicking outside of modal-content
+        document.getElementById('submittaskModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('submittaskModal')) {
+                document.getElementById('submittaskModal').style.display = 'none';
+            }
+        });
+
+        document.getElementById('submitTaskForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validate required fields
+            const title = document.getElementById('taskTitle').value.trim();
+            const submissionDate = document.getElementById('taskSubmissionDate').value;
+            const taskStatus = document.getElementById('taskStatus').value;
+            
+            if (!title) {
+                showToast('Please enter a task title', 'error');
+                return;
+            }
+            
+            if (!submissionDate) {
+                showToast('Please select a submission date/time', 'error');
+                return;
+            }
+            
+            if (!taskStatus) {
+                showToast('Please select a task status', 'error');
+                return;
+            }
+            
+            const tasks = getTasksData() || [];
+            tasks.push({
+                title: title,
+                description: document.getElementById('taskDesc').value,
+                priority: document.getElementById('taskPriority').value,
+                status: taskStatus,
+                submissionDate: submissionDate,
+                date: new Date().toISOString()
+            });
+            saveTasksData(tasks);
+            showToast('Task submitted successfully!', 'success');
+            document.getElementById('submitTaskForm').reset();
+            document.getElementById('submittaskModal').style.display = 'none';
+            renderTasks();
+        });
+    </script>
+</body>
+</html>
