@@ -15,23 +15,30 @@
             <a href="admin-dashboard.html" class="navbar-logo">
                 <span class="logo-gradient">Attendance</span><span class="logo-white">Pro</span>
             </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="navbar-right">
                 <div class="navbar-user">
                     <div class="user-profile-section">
                         <img src="https://ui-avatars.com/api/?name=Admin&background=3FA9FF&color=fff" alt="Profile" class="profile-picture" id="profilePicture">
                         <div class="user-info">
-                            <span class="user-greeting" id="userGreeting">Welcome, <strong id="userFirstName">Admin</strong></span>
-                            <span class="user-email" id="userEmail">faithdeves@gmail.com</span>
+                            <span class="user-email" id="userEmail">admin@example.com</span>
                         </div>
                     </div>
-                    <button class="btn-logout" id="logoutBtn">Logout</button>
+                    <button class="btn-navbar-logout" id="navLogoutBtn">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Logout</span>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="dashboard-wrapper">
-        <aside class="sidebar">
+        <aside class="dashboard-sidebar" id="dashboardSidebar">
             <nav class="sidebar-nav">
                 <a href="admin-dashboard.html" class="sidebar-item active"><i class="bi bi-speedometer2 sidebar-icon"></i><span class="sidebar-label">Dashboard</span></a>
                 <a href="#admin-attendance" class="sidebar-item"><i class="bi bi-clock sidebar-icon"></i><span class="sidebar-label">Attendance</span></a>

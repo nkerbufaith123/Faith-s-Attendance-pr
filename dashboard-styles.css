@@ -125,9 +125,10 @@
     color: rgba(167, 179, 197, 0.8);
     text-decoration: none;
     transition: all 0.3s ease;
-    border-left: 3px solid transparent;
+    border-left: 4px solid transparent;
     font-weight: 500;
     margin: 0;
+    position: relative;
 }
 
 .sidebar-item:hover {
@@ -140,7 +141,8 @@
     background: rgba(63, 169, 255, 0.15);
     color: #3FA9FF;
     border-left-color: #3FA9FF;
-    box-shadow: inset 0 0 30px rgba(63, 169, 255, 0.1);
+    border-left-width: 4px;
+    box-shadow: inset 0 0 30px rgba(63, 169, 255, 0.1), inset 4px 0 0 #3FA9FF;
 }
 
 .sidebar-link {
@@ -151,21 +153,25 @@
     color: rgba(167, 179, 197, 0.8);
     text-decoration: none;
     transition: all 0.3s ease;
-    border-left: 3px solid transparent;
+    border-left: 4px solid transparent;
     font-weight: 500;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .sidebar-link:hover {
     background: rgba(63, 169, 255, 0.1);
     color: rgba(63, 169, 255, 0.9);
     border-left-color: rgba(63, 169, 255, 0.5);
+    border-left-width: 4px;
 }
 
 .sidebar-link.active {
     background: rgba(63, 169, 255, 0.15);
     color: #3FA9FF;
     border-left-color: #3FA9FF;
-    box-shadow: inset 0 0 30px rgba(63, 169, 255, 0.1);
+    border-left-width: 4px;
+    box-shadow: inset 0 0 30px rgba(63, 169, 255, 0.1), inset 4px 0 0 #3FA9FF;
 }
 
 .sidebar-link i,
@@ -198,7 +204,7 @@
     margin-top: 60px;
     width: calc(100% - 250px);
     min-height: calc(100vh - 60px);
-    padding: 2rem;
+    padding: 1.5rem;
     overflow-x: hidden;
     box-sizing: border-box;
 }
@@ -206,9 +212,11 @@
 .dashboard-container {
     max-width: 100%;
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Mobile Hamburger Menu */
@@ -220,11 +228,11 @@
         top: 60px;
         width: 250px;
         height: calc(100vh - 60px);
-        background: linear-gradient(180deg, rgba(15, 42, 95, 0.95) 0%, rgba(11, 28, 61, 0.95) 100%);
-        border-right: 1px solid rgba(63, 169, 255, 0.1);
+        background: linear-gradient(180deg, rgba(15, 42, 95, 0.98) 0%, rgba(11, 28, 61, 0.98) 100%);
+        border-right: 1px solid rgba(63, 169, 255, 0.15);
         overflow-y: auto;
         z-index: 998;
-        box-shadow: inset -1px 0 0 rgba(63, 169, 255, 0.1);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset -1px 0 0 rgba(63, 169, 255, 0.1);
         transition: left 0.3s ease;
     }
 
@@ -240,28 +248,33 @@
         top: 50%;
         transform: translateY(-50%);
         z-index: 1001;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
     }
 
     .mobile-menu-btn span {
         display: block;
-        width: 25px;
+        width: 28px;
         height: 3px;
-        margin: 4px 0;
-        background: #fff;
+        margin: 5px 0;
+        background: #ffffff;
         border-radius: 2px;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
     }
 
     .mobile-menu-btn.active span:nth-child(1) {
-        transform: rotate(45deg) translate(10px, 10px);
+        transform: rotate(45deg) translate(10px, 11px);
     }
 
     .mobile-menu-btn.active span:nth-child(2) {
         opacity: 0;
+        transform: translateX(-10px);
     }
 
     .mobile-menu-btn.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -7px);
+        transform: rotate(-45deg) translate(7px, -8px);
     }
 
     .navbar-content {
@@ -270,19 +283,23 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        padding: 0;
     }
 
     .navbar-logo {
         flex: 1;
+        font-size: 1.25rem;
     }
 
     .navbar-right {
-        display: none;
+        display: none !important;
     }
 
     .dashboard-section,
     .dashboard-wrapper {
         margin-left: 0 !important;
+        width: 100% !important;
+        padding: 1rem;
     }
     .dashboard-sidebar {
         position: fixed;
@@ -296,6 +313,11 @@
 
     .dashboard-section {
         margin-left: 0;
+        padding: 1rem;
+    }
+    
+    body {
+        overflow-x: hidden;
     }
 
     .mobile-menu-btn {
@@ -410,12 +432,12 @@
 /* Element Alignment and Spacing Fixes */
 @media (max-width: 768px) {
     .dashboard-header {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
         text-align: left;
     }
     .dashboard-header h1 {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.75rem;
+        margin-bottom: 0.25rem;
     }
     .dashboard-section {
         padding: 1rem;
@@ -671,7 +693,7 @@
 }
 
 .dashboard-header {
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     position: relative;
     z-index: 10;
 }
@@ -679,7 +701,7 @@
 .dashboard-header h1 {
     font-size: 2.5rem;
     color: var(--text-main);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     font-weight: 700;
 }
 
@@ -1610,5 +1632,57 @@ select option:checked {
     .attendance-item {
         flex-wrap: wrap;
         padding: 1rem;
+    }
+    
+    /* Table responsiveness */
+    table {
+        width: 100%;
+        font-size: 0.875rem;
+    }
+    
+    table tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(63, 169, 255, 0.1);
+        border-radius: 0.5rem;
+    }
+    
+    table thead {
+        display: none;
+    }
+    
+    table tbody td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    
+    table tbody td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: rgba(63, 169, 255, 0.8);
+    }
+    
+    /* Content width constraints */
+    .quick-large-actions,
+    .stat-actions-grid,
+    .recent-activity,
+    .quick-actions,
+    .getting-started {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .stat-actions-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 }
