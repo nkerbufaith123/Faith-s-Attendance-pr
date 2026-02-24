@@ -210,13 +210,34 @@
 }
 
 .dashboard-container {
-    max-width: 100%;
+    max-width: 1400px;
     width: 100%;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 2rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+}
+
+/* Responsive content width adjustments */
+@media (max-width: 1200px) {
+    .dashboard-container {
+        max-width: 1200px;
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dashboard-container {
+        max-width: 100%;
+        padding: 0 1.5rem;
+    }
+    
+    .recent-activity,
+    .quick-actions,
+    .getting-started {
+        padding: 1.5rem;
+    }
 }
 
 /* Mobile Hamburger Menu */
@@ -301,6 +322,12 @@
         width: 100% !important;
         padding: 1rem;
     }
+    
+    .dashboard-container {
+        padding: 0 1rem;
+        max-width: 100%;
+    }
+    
     .dashboard-sidebar {
         position: fixed;
         left: -250px;
@@ -318,6 +345,10 @@
     
     body {
         overflow-x: hidden;
+    }
+    
+    .dashboard-container {
+        padding: 0 1rem;
     }
 
     .mobile-menu-btn {
@@ -476,7 +507,10 @@
         display: none;
     }
     .dashboard-section {
-        padding: 0.5rem;
+        padding: 1rem;
+    }
+    .dashboard-container {
+        padding: 0 0.75rem;
     }
     .dashboard-navbar {
         position: fixed;
@@ -484,6 +518,13 @@
         left: 0;
         right: 0;
         z-index: 1000;
+    }
+    
+    .recent-activity,
+    .quick-actions,
+    .getting-started {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
     }
 }
 @media (max-width: 480px) {
@@ -774,6 +815,9 @@
     padding: 2rem;
     border-radius: 1.5rem;
     backdrop-filter: blur(10px);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto 2rem auto;
 }
 
 .quick-actions h2,
@@ -951,6 +995,9 @@
     padding: 2rem;
     border-radius: 1.5rem;
     backdrop-filter: blur(10px);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto 2rem auto;
 }
 
 .activity-list {
@@ -997,6 +1044,9 @@
     padding: 2rem;
     border-radius: 1.5rem;
     backdrop-filter: blur(10px);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto 2rem auto;
 }
 
 .checklist {
