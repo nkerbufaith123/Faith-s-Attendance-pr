@@ -210,10 +210,9 @@
 }
 
 .dashboard-container {
-    max-width: 1400px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -222,14 +221,14 @@
 /* Responsive content width adjustments */
 @media (max-width: 1200px) {
     .dashboard-container {
-        max-width: 1200px;
+        width: 100%;
         padding: 0 1.5rem;
     }
 }
 
 @media (max-width: 1024px) {
     .dashboard-container {
-        max-width: 100%;
+        width: 100%;
         padding: 0 1.5rem;
     }
     
@@ -325,7 +324,7 @@
     
     .dashboard-container {
         padding: 0 1rem;
-        max-width: 100%;
+        width: 100%;
     }
     
     .dashboard-sidebar {
@@ -730,7 +729,7 @@
 .dashboard-container {
     position: relative;
     z-index: 10;
-    max-width: 1200px;
+    width: 100%;
 }
 
 .dashboard-header {
