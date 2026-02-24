@@ -1,3 +1,48 @@
+// Sidebar Navigation Initialization
+document.addEventListener('DOMContentLoaded', function() {
+    // Set active sidebar link based on current page
+    const currentPage = window.location.pathname.split('/').pop() || 'dashboard.html';
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    
+    sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href === currentPage || (href === 'dashboard.html' && currentPage === '')) {
+            link.classList.add('active');
+        }
+    });
+
+    // Mobile sidebar toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const dashboardSidebar = document.getElementById('dashboardSidebar');
+    
+    if (mobileMenuBtn && dashboardSidebar) {
+        mobileMenuBtn.addEventListener('click', () => {
+            dashboardSidebar.classList.toggle('active');
+        });
+        
+        // Close sidebar when a link is clicked
+        const sidebarLinks = dashboardSidebar.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    dashboardSidebar.classList.remove('active');
+                }
+            });
+        });
+        
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                !dashboardSidebar.contains(e.target) && 
+                e.target !== mobileMenuBtn &&
+                !mobileMenuBtn.contains(e.target)) {
+                dashboardSidebar.classList.remove('active');
+            }
+        });
+    }
+});
+
 // Dashboard Initialization and Logic
 
 // Check if user is logged in

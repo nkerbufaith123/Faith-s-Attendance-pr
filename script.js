@@ -26,6 +26,30 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Update active nav links based on scroll position
+function updateActiveNavLinks() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.navbar-menu a[href^="#"]');
+    
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.pageYOffset >= sectionTop) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveNavLinks);
+window.addEventListener('load', updateActiveNavLinks);
+
 // Smooth scroll for navigation links
 const navLinks = document.querySelectorAll('a[href^="#"]');
 navLinks.forEach(link => {
