@@ -79,43 +79,31 @@
 
     <!-- Dashboard Content -->
     <section class="dashboard-section">
-        <div class="dashboard-container" id="dashboardMain">
+        <div class="dashboard-container">
             <div class="dashboard-header">
                 <h1 id="dashboardGreeting">Welcome <span id="userFirstNameHeader">User</span></h1>
                 <p>Manage your attendance and track team performance</p>
             </div>
-                    <div class="stat-actions-grid">
-                        <button class="stat-action stat-action--primary" id="statToday">
-                            <div class="stat-action-inner">
-                                <div class="stat-label">Today's Status</div>
-                                <div class="stat-value" id="todayStatus">Not Checked In</div>
-                            </div>
-                        </button>
-
-                        <button class="stat-action stat-action--info" id="statHours">
-                            <div class="stat-action-inner">
-                                <div class="stat-label">Work Hours</div>
-                                <div class="stat-value" id="workHours">0.0h</div>
-                            </div>
-                        </button>
-
-                        <button class="stat-action stat-action--accent" id="statMonth">
-                            <div class="stat-action-inner">
-                                <div class="stat-label">This Month</div>
-                                <div class="stat-value" id="monthlyAttendance">0%</div>
-                            </div>
-                        </button>
-
-                        <button class="stat-action stat-action--muted" id="statTarget">
-                            <div class="stat-action-inner">
-                                <div class="stat-label">Target</div>
-                                <div class="stat-value" id="targetValue">100%</div>
-                            </div>
-                        </button>
+            <div class="recent-activity">
+                <h2>Today's Status</h2>
+                <div id="dashboardToday" style="display:flex; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
+                    <div class="stat-card" style="min-width:150px;">
+                        <div class="stat-label">Today's Status</div>
+                        <div class="stat-value" id="todayStatus">Not Checked In</div>
+                    </div>
+                    <div class="stat-card" style="min-width:150px;">
+                        <div class="stat-label">Work Hours</div>
+                        <div class="stat-value" id="workHours">0.0h</div>
+                    </div>
+                    <div class="stat-card" style="min-width:150px;">
+                        <div class="stat-label">This Month</div>
+                        <div class="stat-value" id="monthlyAttendance">0%</div>
+                    </div>
+                    <div class="stat-card" style="min-width:150px;">
+                        <div class="stat-label">Target</div>
+                        <div class="stat-value" id="targetValue">100%</div>
                     </div>
                 </div>
-
-                <!-- Quick Actions (Updated: three large primary buttons) -->
                 <div class="quick-actions">
                     <h2>Quick Actions</h2>
                     <div class="actions-grid">
@@ -124,12 +112,10 @@
                                 <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>
                                 <span class="action-text">Check In</span>
                             </button>
-
                             <button id="checkOutBtn" class="btn-primary quick-action" data-action="checkout" aria-label="Check Out">
                                 <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
                                 <span class="action-text">Check Out</span>
                             </button>
-
                             <button id="generateQrBtn" class="btn-primary quick-action" data-action="generate-qr" aria-label="Generate QR Code">
                                 <i class="bi bi-upc-scan" aria-hidden="true"></i>
                                 <span class="action-text">Generate QR Code</span>
@@ -163,13 +149,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Secondary Panels -->
-                <div id="section-attendance" class="section-panel" style="display:none; margin-top:2rem;">
-                <div class="recent-activity">
-                    <h2>Attendance</h2>
-                    <div id="attendanceToday">
-                        <h3>Today's Attendance</h3>
-                        <p id="attendanceTimes">No records for today</p>
+        </div>
+    </section>
                     </div>
 
                     <div style="margin-top:1.25rem; display:flex; gap:0.5rem; align-items:center;">
@@ -185,7 +166,7 @@
                 </div>
             </div>
 
-            <div id="section-reports" class="section-panel" style="display:none; margin-top:2rem;">
+            <div id="section-reports" class="section-panel" style="display:none;">
                 <div class="recent-activity">
                     <h2>Reports</h2>
                     <div class="reports-summary" style="display:flex; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
@@ -216,7 +197,7 @@
                 </div>
             </div>
 
-            <div id="section-task" class="section-panel" style="display:none; margin-top:2rem;">
+            <div id="section-task" class="section-panel" style="display:none;">
                 <div class="recent-activity">
                     <h2>Tasks</h2>
                     <div id="taskControls" style="margin-bottom:1rem;">
@@ -242,7 +223,7 @@
                 </div>
             </div>
 
-            <div id="section-settings" class="section-panel" style="display:none; margin-top:2rem;">
+            <div id="section-settings" class="section-panel" style="display:none;">
                 <div class="recent-activity">
                     <h2>Account Settings</h2>
                     <form id="accountSettingsForm">

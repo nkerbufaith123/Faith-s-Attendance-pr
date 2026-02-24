@@ -198,15 +198,29 @@
 }
 
 /* Dashboard layout with sidebar */
-.dashboard-section,
+
+/* Dashboard layout with sidebar (default) */
 .dashboard-wrapper {
     margin-left: 250px;
-    margin-top: 60px;
+    margin-top: 0;
     width: calc(100% - 250px);
-    min-height: calc(100vh - 60px);
-    padding: 1.5rem;
+    min-height: 100vh;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
     overflow-x: hidden;
     box-sizing: border-box;
+    padding-top: 60px;
+    /* Ensure dashboard content starts below navbar */
+}
+
+/* Remove extra margin/padding for inner pages and section panels */
+.dashboard-section {
+    margin: 0 !important;
+    padding: 0.25rem 0 0 0 !important;
+    width: 100% !important;
+    min-height: calc(100vh - 60px);
+    box-sizing: border-box;
+    padding-top: 0.25rem !important;
+    /* Reduce top spacing for inner pages */
 }
 
 .dashboard-container {
@@ -344,6 +358,8 @@
     
     body {
         overflow-x: hidden;
+        margin: 0;
+        padding: 0;
     }
     
     .dashboard-container {
@@ -484,77 +500,72 @@
         margin-bottom: 0.75rem;
     }
 }
-/* Responsive Dashboard Layout */
-@media (max-width: 1024px) {
-    .dashboard-wrapper {
-        flex-direction: column;
-    }
-    .sidebar {
-        min-width: 180px;
-        width: 180px;
-        padding: 1rem 0.5rem;
-    }
-    .dashboard-section {
-        padding: 1rem;
-    }
+/* Dashboard Wrapper Styles */
+.dashboard-wrapper {
+    margin-top: 0;
+    margin-left: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background: #f8fafc;
 }
-@media (max-width: 768px) {
-    .dashboard-wrapper {
-        flex-direction: column;
-    }
-    .sidebar {
-        display: none;
-    }
-    .dashboard-section {
-        padding: 1rem;
+
+/* Dashboard Section Styles */
+.dashboard-section {
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    max-width: 1200px;
+    min-height: 100vh;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    position: relative;
+    z-index: 1;
+}
+
+/* Sidebar Styles */
+.dashboard-sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background: #1e293b;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main Content Styles */
+.dashboard-container {
+    margin-left: 240px;
+    padding: 0;
+    min-height: 100vh;
+    background: transparent;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    .dashboard-sidebar {
+        width: 60px;
     }
     .dashboard-container {
-        padding: 0 0.75rem;
-    }
-    .dashboard-navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-    }
-    
-    .recent-activity,
-    .quick-actions,
-    .getting-started {
-        padding: 1rem;
-        margin-bottom: 1.5rem;
+        margin-left: 70px;
     }
 }
-@media (max-width: 480px) {
+
+@media (max-width: 600px) {
     .dashboard-section {
-        padding: 0.25rem;
+        padding: 1rem 0.5rem;
+        max-width: 100vw;
+    }
+    .dashboard-container {
+        margin-left: 0;
     }
 }
-/* Dashboard Styles */
-
-.dashboard-navbar {
-    background: rgba(11, 28, 61, 0.95);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.navbar-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 20px;
-    max-width: 100%;
-}
-
-.navbar-logo {
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
+/* Removed stray properties: these must be inside a selector. */
 
 .navbar-logo:hover {
     transform: scale(1.05);
@@ -1629,10 +1640,9 @@ select option:checked {
     color: #EF4444;
 }
 
-.btn-action.remove-btn:hover {
+ .btn-action.remove-btn:hover {
     background: rgba(239, 68, 68, 0.2);
     color: #FF6B6B;
-}
 }
 /* ============================================
    ADMIN ATTENDANCE ITEMS STYLING
