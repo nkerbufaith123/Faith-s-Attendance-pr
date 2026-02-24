@@ -1,8 +1,8 @@
-// Sidebar Navigation Initialization
+// Sidebar Navigation Initialization - Mobile and Desktop
 document.addEventListener('DOMContentLoaded', function() {
     // Set active sidebar link based on current page
     const currentPage = window.location.pathname.split('/').pop() || 'dashboard.html';
-    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link, .sidebar-item');
     
     sidebarLinks.forEach(link => {
         link.classList.remove('active');
@@ -12,21 +12,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mobile sidebar toggle
+    // Mobile sidebar and hamburger menu integration
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const dashboardSidebar = document.getElementById('dashboardSidebar');
+    const dashboardSidebar = document.getElementById('dashboardSidebar') || document.querySelector('.sidebar');
     
     if (mobileMenuBtn && dashboardSidebar) {
-        mobileMenuBtn.addEventListener('click', () => {
+        // Toggle sidebar visibility on hamburger click
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             dashboardSidebar.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
         });
         
         // Close sidebar when a link is clicked
-        const sidebarLinks = dashboardSidebar.querySelectorAll('.sidebar-link');
+        const sidebarLinks = dashboardSidebar.querySelectorAll('.sidebar-link, .sidebar-item');
         sidebarLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     dashboardSidebar.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
                 }
             });
         });
@@ -34,10 +38,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close sidebar when clicking outside
         document.addEventListener('click', (e) => {
             if (window.innerWidth <= 768 && 
+                dashboardSidebar.classList.contains('active') &&
                 !dashboardSidebar.contains(e.target) && 
-                e.target !== mobileMenuBtn &&
                 !mobileMenuBtn.contains(e.target)) {
                 dashboardSidebar.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
+        });
+
+        // Close sidebar on window resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                dashboardSidebar.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
             }
         });
     }
